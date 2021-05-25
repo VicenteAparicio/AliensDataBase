@@ -23,7 +23,7 @@ class Viajero {
     async modifyPassenger(cuerpoDatos){
         return Pasajero.update(
             //Datos que cambiamos
-            {edad: cuerpoDatos.edad, especialidad: cuerpoDatos.especialidad},
+            {edad: cuerpoDatos.edad, especialidad: cuerpoDatos.especialidad, apellido: cuerpoDatos.apellido, apellido2: cuerpoDatos.apellido2},
             //Dónde
             {where: {id: cuerpoDatos.id}}
         )
