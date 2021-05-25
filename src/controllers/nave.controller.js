@@ -16,11 +16,22 @@ class Navio {
         return Nave.create(body); // Creación por POSTMAN
         
     }
-
-
-
-
+    async deleteNavio(id){
+        return Nave.destroy({where: {id: id}});
+    }
+    async modifyNavio(cuerpoDatos){
+        return Nave.update(
+            //Datos que cambiamos
+            {codigo: cuerpoDatos.codigo, tiponave: cuerpoDatos.tiponave, aforo: cuerpoDatos.aforo},
+            //Dónde
+            {where: {id: cuerpoDatos.id}}
+        )
+    }
 }
+
+
+
+
 
 
 let naveController = new Navio();
