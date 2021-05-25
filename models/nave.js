@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Pasajero,{foreignKey:'naveId'}); //En models pasajero le metes naveId
     }
   };
   Nave.init({
