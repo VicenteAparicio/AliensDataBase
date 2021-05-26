@@ -1,5 +1,5 @@
 const { Pasajero } = require('../models');
-
+const bcrypt = require('bcrypt');
 
 
 
@@ -13,8 +13,17 @@ class Viajero {
         
     }
     async newPassenger(body){
+        let password = body.password;
+        let passwordHashed = bcrypt.hashSync(password, 10);
+        body.password = passwordHashed;
         return Pasajero.create(body); // Crear pasajeros por POSTMAN
         
+    }
+
+    async namePassenger(nombre){
+        return Pasajero.findOne({
+            where: {nombre}
+        })
     }
 
     async deletePassenger(id){

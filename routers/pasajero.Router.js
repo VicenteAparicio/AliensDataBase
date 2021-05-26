@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const pasajeroController = require('../controllers/pasajero.controller');
+const authenticate = require('../middleware/authenticate');
 
 
 
@@ -16,7 +17,7 @@ router.get('/', async (req, res) => {
     };
 });
 // LOS TRAE POR ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate, async (req, res) => {
     try{
         const id = req.params.id;
         res.json(await pasajeroController.passengerId(id));
@@ -50,7 +51,7 @@ router.delete('/:id', async (req, res)=>{
     }
 });
 
-router.put('/', async (req, res)=>{
+router.put('/', authenticate, async (req, res)=>{
     try {
         const cuerpoDatos = req.body
         res.json(await pasajeroController.modifyPassenger(cuerpoDatos));
@@ -61,5 +62,7 @@ router.put('/', async (req, res)=>{
         }); 
     }
 });
+
+
 
 module.exports = router;
